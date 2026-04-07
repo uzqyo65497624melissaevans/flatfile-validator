@@ -74,6 +74,7 @@ flatfile-validator profile data.tsv --delimiter tab --output report.json
 | `--strict` | Exit with non-zero code on any validation error |
 | `--skip-rows` | Number of header or comment rows to skip before validation |
 | `--encoding` | File encoding to use when reading the input file (default: `utf-8`) |
+| `--max-errors` | Stop validation after reaching this number of errors (default: unlimited) |
 
 ---
 
