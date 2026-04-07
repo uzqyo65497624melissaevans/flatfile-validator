@@ -72,6 +72,8 @@ flatfile-validator profile data.tsv --delimiter tab --output report.json
 | `--delimiter` | Field delimiter (`comma`, `tab`, or custom character) |
 | `--output` | Write results to a JSON or CSV report file |
 | `--strict` | Exit with non-zero code on any validation error |
+| `--skip-rows` | Number of header or comment rows to skip before validation |
+| `--encoding` | File encoding to use when reading the input file (default: `utf-8`) |
 
 ---
 
