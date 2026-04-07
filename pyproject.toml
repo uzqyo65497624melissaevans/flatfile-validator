@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "flatfile-validator"
+version = "0.1.0"
+description = "A lightweight CLI tool for validating and profiling CSV/TSV files against configurable schema rules"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "flatfile-validator contributors" }
+]
+keywords = ["csv", "tsv", "validation", "schema", "cli", "data-quality"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "rich>=13.0",
+    "jsonschema>=4.17",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.1",
+    "mypy>=1.5",
+    "types-PyYAML",
+]
+
+[project.scripts]
+flatfile-validator = "flatfile_validator.cli:main"
+ffv = "flatfile_validator.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/example/flatfile-validator"
+Issues = "https://github.com/example/flatfile-validator/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=flatfile_validator --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src/flatfile_validator"]
