@@ -72,3 +72,12 @@ addopts = "--cov=flatfile_validator --cov-report=term-missing"
 
 [tool.coverage.run]
 source = ["src/flatfile_validator"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "@overload",
+]
