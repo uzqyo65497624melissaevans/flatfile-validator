@@ -93,11 +93,10 @@ class Schema:
             raise FileNotFoundError(f"Schema file not found: {path}")
 
         suffix = path.suffix.lower()
-
         if suffix in (".yaml", ".yml"):
             if not HAS_YAML:
                 raise ValueError(
-                    "PyYAML is required to load YAML schemas. "
+                    "PyYAML is required to load YAML schema files. "
                     "Install it with: pip install pyyaml"
                 )
             with path.open("r", encoding="utf-8") as fh:
@@ -107,30 +106,8 @@ class Schema:
                 data = json.load(fh)
         else:
             raise ValueError(
-                f"Unsupported schema file format '{suffix}'. "
-                "Use .yaml, .yml, or .json."
+                f"Unsupported schema file extension '{suffix}'. "
+                "Expected one of: .yaml, .yml, .json"
             )
 
         return cls.from_dict(data)
-
-    # ------------------------------------------------------------------ #
-    # Helpers                                                               #
-    # ------------------------------------------------------------------ #
-
-    @property
-    def column_names(self) -> List[str]:
-        """Return an ordered list of expected column names."""
-        return [col.name for col in self.columns]
-
-    def get_column(self, name: str) -> Optional[ColumnSchema]:
-        """Look up a ColumnSchema by name, returning None if not found."""
-        for col in self.columns:
-            if col.name == name:
-                return col
-        return None
-
-    def __repr__(self) -> str:  # pragma: no cover
-        return (
-            f"Schema(name={self.name!r}, columns={len(self.columns)}, "
-            f"delimiter={self.delimiter!r})"
-        )
