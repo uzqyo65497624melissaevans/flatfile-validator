@@ -78,6 +78,20 @@ flatfile-validator profile data.tsv --delimiter tab --output report.json
 
 ---
 
+## Schema Reference
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `delimiter` | string | Delimiter used in the flat file (`","`, `"\t"`, etc.) |
+| `columns[].name` | string | Expected column header name |
+| `columns[].type` | string | Data type: `string`, `integer`, or `float` |
+| `columns[].required` | boolean | Whether the field must be present and non-empty |
+| `columns[].pattern` | string | Regex pattern the value must match (strings only) |
+| `columns[].min` | number | Minimum allowed value (numeric types only) |
+| `columns[].max` | number | Maximum allowed value (numeric types only) |
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
